@@ -2,12 +2,16 @@ package br.com.ebook.entity;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Table;
 
 @Entity
+@Table(name="automovel")
 public class Automovel {
 
-	@Id @GeneratedValue
+	@Id 
+	@GeneratedValue(strategy=GenerationType.AUTO)
 	private Integer id;
 	private String marca;
 	private String modelo;
@@ -86,6 +90,16 @@ public class Automovel {
 	public void setObservacoes(String observacoes) {
 		this.observacoes = observacoes;
 	}
+
+	/* (non-Javadoc)
+	 * @see java.lang.Object#toString()
+	 */
+	@Override
+	public String toString() {
+		return "Automovel [id=" + id + ", marca=" + marca + ", modelo="
+				+ modelo + ", anoFabricacao=" + anoFabricacao + ", anoModelo="
+				+ anoModelo + ", observacoes=" + observacoes + "]";
+	}
 	/* (non-Javadoc)
 	 * @see java.lang.Object#hashCode()
 	 */
@@ -93,7 +107,12 @@ public class Automovel {
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + ((id == null) ? 0 : id.hashCode());
+		result = prime * result
+				+ ((anoFabricacao == null) ? 0 : anoFabricacao.hashCode());
+		result = prime * result
+				+ ((anoModelo == null) ? 0 : anoModelo.hashCode());
+		result = prime * result + ((marca == null) ? 0 : marca.hashCode());
+		result = prime * result + ((modelo == null) ? 0 : modelo.hashCode());
 		return result;
 	}
 	/* (non-Javadoc)
@@ -108,21 +127,27 @@ public class Automovel {
 		if (getClass() != obj.getClass())
 			return false;
 		Automovel other = (Automovel) obj;
-		if (id == null) {
-			if (other.id != null)
+		if (anoFabricacao == null) {
+			if (other.anoFabricacao != null)
 				return false;
-		} else if (!id.equals(other.id))
+		} else if (!anoFabricacao.equals(other.anoFabricacao))
+			return false;
+		if (anoModelo == null) {
+			if (other.anoModelo != null)
+				return false;
+		} else if (!anoModelo.equals(other.anoModelo))
+			return false;
+		if (marca == null) {
+			if (other.marca != null)
+				return false;
+		} else if (!marca.equals(other.marca))
+			return false;
+		if (modelo == null) {
+			if (other.modelo != null)
+				return false;
+		} else if (!modelo.equals(other.modelo))
 			return false;
 		return true;
-	}
-	/* (non-Javadoc)
-	 * @see java.lang.Object#toString()
-	 */
-	@Override
-	public String toString() {
-		return "Automovel [id=" + id + ", marca=" + marca + ", modelo="
-				+ modelo + ", anoFabricacao=" + anoFabricacao + ", anoModelo="
-				+ anoModelo + ", observacoes=" + observacoes + "]";
 	}
 
 	
